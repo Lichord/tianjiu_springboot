@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <!--location中填写mysql jar 包位置-->
+    <classPathEntry location="C:\Users\HASEE\.m2\repository\mysql\mysql-connector-java\8.0.12\mysql-connector-java-8.0.12.jar"/>
+    <!--
+            targetRuntime="MyBatis3Simple":生成简单版的CRUD
+            MyBatis3:豪华版
+         -->
+    <context id="context" targetRuntime="MyBatis3Simple">
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="MyMapper"/>
+        </plugin>
+        <commentGenerator>
+            <property name="suppressAllComments" value="false"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+
+
+        <!--填写数据库信息-->
+        <jdbcConnection userId="root" password="123" driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/video?serverTimezone=UTC"/>
+        <!---->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- javaModelGenerator：指定javaBean的生成策略
+            targetPackage：目标包名
+            targetProject=：目标工程
+            -->
+        <javaModelGenerator targetPackage="bjfu.lixian.pojo" targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- sqlMapGenerator：sql映射生成策略： -->
+        <sqlMapGenerator targetPackage="mapper" targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <!-- javaClientGenerator:指定mapper接口所在的位置 -->
+        <javaClientGenerator targetPackage="bjfu.lixian.mapper" type="XMLMAPPER" targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!-- 指定要逆向分析哪些表：根据表要创建javaBean schema：数据库名 tableName：表名 -->
+        <!--<table schema="mybatis" tableName="employee" enableCountByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" enableUpdateByExample="false"/>-->
+
+        <table tableName="comments"></table>
+        <table tableName="bgm"></table>
+        <table tableName="search_records"></table>
+        <table tableName="users"></table>
+        <table tableName="users_fans"></table>
+        <table tableName="users_like_videos"></table>
+        <table tableName="users_report"></table>
+        <table tableName="videos"></table>
+    </context>
+</generatorConfiguration>
